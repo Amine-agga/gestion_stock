@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # ===== DATABASES =====
+  user-db:
+    image: postgres:alpine
+    container_name: user-db
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  produit-db:
+    image: postgres:alpine
+    container_name: produit-db
+    environment:
+      POSTGRES_DB: produit_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5434:5432"
+    volumes:
+      - produit_db_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  stock-db:
+    image: postgres:alpine
+    container_name: stock-db
+    environment:
+      POSTGRES_DB: stock_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432"
+    volumes:
+      - stock_db_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  fournisseur-db:
+    image: postgres:alpine
+    container_name: fournisseur-db
+    environment:
+      POSTGRES_DB: fournisseur_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5436:5432"
+    volumes:
+      - fournisseur_db_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  commande-db:
+    image: postgres:alpine
+    container_name: commande-db
+    environment:
+      POSTGRES_DB: commande_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5437:5432"
+    volumes:
+      - commande_db_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  user_db_data:
+  produit_db_data:
+  stock_db_data:
+  fournisseur_db_data:
+  commande_db_data:
